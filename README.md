@@ -11,7 +11,8 @@ delivered via `core.async` channels.
 ## Usage
 
 Papadom uses custom attributes to recognise templates and elements that should
-generate events when the user interacts with them.
+generate events when the user interacts with them.  See the example
+[todo app page](examples/todo/resources/public/index.html).
 
 ## Recognised Attributes
 
@@ -43,13 +44,16 @@ separated list of attribute names to be passed in the event data.
 ## Clojurescript functions
 
 The `papadom.template` namespace provides functions for interacting with the
-templates.
+templates from within your application.  See the example
+[todo app code](examples/todo/src/papadom/examples/todo.cljs).
 
 The `compile-templates` function must be called first, in order to compile the
 templates in the current page.
 
 The `template-events` is called with a `core.async` channel which is configured
-to receive events from `t-event` annotated elements.
+to receive events from `t-event` annotated elements.  You're application reads
+events from the event channel, modifies it's internal state, calling `render`
+to re-display the templates based on that state.
 
 ## JavaScript dependencies
 

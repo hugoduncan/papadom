@@ -11,6 +11,7 @@
    [cljs.core.async.macros :refer [go]]))
 
 (defn show-state
+  "Takes the application state, and renders it on the page using the templates."
   [state]
   (render "state"
           (assoc state
@@ -18,6 +19,7 @@
             :remaining (count (filter :done (:todos state))))))
 
 (defn app
+  "Reads events and modifies the state."
   [state event-chan]
   (go
    (loop [[event event-data] (<! event-chan)]
@@ -37,6 +39,8 @@
      (recur (<! event-chan)))))
 
 (defn start
+  "Read the templates, set up the events channel, and start the app with
+  some initial state."
   ([initial-state]
      (let [event-chan (chan)
            state (atom nil)]
