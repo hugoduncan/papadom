@@ -23,6 +23,8 @@ THE SOFTWARE.
 */
 
 // lib/handlebars/browser-prefix.js
+goog.provide("papadom.js.handlebars");
+
 var Handlebars = {};
 
 (function(Handlebars, undefined) {

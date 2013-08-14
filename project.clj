@@ -21,11 +21,13 @@
                 :compiler {:output-to "target/papadom.js"
                            ;; :optimizations :whitespace
                            :pretty-print true
-                           :foreign-libs
-                           [{:file "papadom/js/jquery.js"
-                             :provides ["papadom.js.jquery"]}
-                            {:file "papadom/js/handlebars.js"
-                             :provides ["papadom.js.handlebars"]}]}}]
+                           :libs [""]
+                           ;; :foreign-libs
+                           ;; [{:file "papadom/js/jquery.js"
+                           ;;   :provides ["papadom.js.jquery"]}
+                           ;;  {:file "papadom/js/handlebars.js"
+                           ;;   :provides ["papadom.js.handlebars"]}]
+                           }}]
               :test-commands {"unit-tests"
                               ["runners/phantomjs.js"
                                "target/papadom.js"]}})
