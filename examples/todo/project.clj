@@ -19,11 +19,8 @@
                            ;; If you want to use jquery and handlebars
                            ;; via a CDN, remove the :foreign-libs
                            ;; definitions.
-                           :foreign-libs
-                           [{:file "papadom/js/jquery.js"
-                             :provides ["papadom.js.jquery"]}
-                            {:file "papadom/js/handlebars.js"
-                             :provides ["papadom.js.handlebars"]}]}}]
+                           :libs [""]
+                           }}]
               :test-commands {"unit-tests"
                               ["runners/phantomjs.js"
                                "target/todos.js"]}}
@@ -32,3 +29,9 @@
             [lein-ring "0.8.6"]]
   :ring {:handler papadom.dev.repl-server/the-app}
   :hooks [leiningen.cljsbuild])
+
+                           ;; :foreign-libs
+                           ;; [{:file "papadom/js/jquery.js"
+                           ;;   :provides ["papadom.js.jquery"]}
+                           ;;  {:file "papadom/js/handlebars.js"
+                           ;;   :provides ["papadom.js.handlebars"]}]
