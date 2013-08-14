@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet"
+          href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css"
+          media="screen">
+    <link rel="stylesheet" href="/css/bootstrap-glyphicons.css" media="screen">
+    <link rel="stylesheet" href="/css/todo.css" media="screen">
+  </head>
+  <body>
+    <div class="container">
+      <h1>TODOS</h1>
+      <div t-content="state">
+        <p><span>{{remaining}} of {{total}} remaining</span>
+             [ <a t-event="archive">archive</a> ]</p>
+        <ul class="unstyled">
+          <div t-template="todos">
+            <li>
+              <input type="checkbox" t-event="done" t-prop="done" t-id="index" index="{{@index}}">
+              <span class="done-{{done}}">{{text}}</span>
+            </li>
+          </div>
+        </ul>
+        <form t-event="add-todo">
+          <input type="text" t-prop="text" size="30" placeholder="add new todo here">
+          <input class="btn btn-primary" type="submit" value="add">
+        </form>
+      </div>
+    </div>
+
+    <!-- js libs shouldn't be needed when :foreign-libs works -->
+    <!-- <script type="text/javascript" src="/js/jquery.js"></script>
+         <script type="text/javascript" src="/js/handlebars.js"></script> -->
+
+    <script type="text/javascript" src="todos.js"></script>
+    <script type="text/javascript">papadom.example.todo.start();</script>
+  </body>
+</html>
