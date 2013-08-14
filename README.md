@@ -67,12 +67,18 @@ to re-display the templates based on that state.
 Papadom uses `handlebars.js` and `jquery.js`.  You can provide these libs in
 several ways.
 
+See [Luke Vanderhart's post][lukespost] for a general introduction to using
+Javascript libraries in Clojurescript.
+
 ### <script> Links in the HTML Page
 
 You can add `<script>` links in the applications web page to provide the
 JavaScript libs.  In this case you should not provide them via `:foreign-libs`
 configuration in your cljsbuild definition, and you should not require the
 `:foreign-libs` namespaces in your application code.
+
+To use `:optimizations` other than `:whitespace` with this approach, you will
+need to add `:externs` to the `:compiler` map in you cljsbuild definitions.
 
 ### Use :foreign-libs with Papadom Provided Versions
 
@@ -103,3 +109,6 @@ Copyright © 2013 Hugo Duncan
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
+
+
+[lukespost]: http://lukevanderhart.com/2011/09/30/using-javascript-and-clojurescript.html "Luke Vanderhart's post on JavaScript libs"
