@@ -70,7 +70,7 @@ several ways.
 See [Luke Vanderhart's post][lukespost] for a general introduction to using
 Javascript libraries in Clojurescript.
 
-### <script> Links in the HTML Page
+### SCRIPT Links in the HTML Page
 
 You can add `<script>` links in the applications web page to provide the
 JavaScript libs.  In this case you should not provide them via `:foreign-libs`
