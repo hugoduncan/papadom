@@ -6,8 +6,10 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/clojurescript "0.0-1844"]
                  [jayq "2.4.0"]
-                 [core.async "0.1.0-SNAPSHOT"]
+                 [org.clojure/core.async "0.1.0-SNAPSHOT"]
                  [com.cemerick/clojurescript.test "0.0.4"]] ; in dev
+  :repositories {"sonatype-oss-public"
+                 "https://oss.sonatype.org/content/groups/public"}
   :profiles {:dev {:source-paths ["src" "dev"]
                    :dependencies [[com.cemerick/piggieback "0.1.0"]
                                   [com.cemerick/clojurescript.test "0.0.4"]]}}
