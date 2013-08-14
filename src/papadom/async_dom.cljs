@@ -45,15 +45,15 @@
   (filterv
    identity
    (map
-    (fn [fld]
-      (let [fld ($ fld)]
-        (if-let [n (attr fld "name")]
+    (fn [field]
+      (let [field ($ field)]
+        (if-let [n (attr field "name")]
           (let [p (field-key-fn n)]
-            (.log js/console (str "n: " n " fields-value-map: " (pr-str p)))
+            ;; (.log js/console (str "n: " n " fields-key-fn: " (pr-str p)))
             (if p
-              [p (if (= "checkbox" (attr fld "type"))
-                   (boolean (attr fld "checked"))
-                   (jq/val fld))])))))
+              [p (if (= "checkbox" (attr field "type"))
+                   (boolean (prop field "checked"))
+                   (jq/val field))])))))
     (js->clj ($ "input,select" ($ form))))))
 
 (defn form-submit-events
@@ -66,7 +66,7 @@
       (fn [e]
         (prevent e)
         (put! channel [event-name (form-values
-                                   (.-currentTarget e)
+                                   form-selector
                                    (or field-key-fn identity))]))))
 
 ;;; General channel functions

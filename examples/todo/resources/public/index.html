@@ -14,12 +14,10 @@
         <p><span>{{remaining}} of {{total}} remaining</span>
              [ <a t-event="archive">archive</a> ]</p>
         <ul class="list-unstyled">
-          <div t-template="todos">
-            <li>
-              <input type="checkbox" t-event="done" t-prop="done" t-id="index" index="{{@index}}">
-              <span class="done-{{done}}">{{text}}</span>
-            </li>
-          </div>
+          <li t-template="todos">
+            <input type="checkbox" t-event="done" t-prop="done" t-id="index" index="{{@index}}">
+            <span class="done-{{done}}">{{text}}</span>
+          </li>
         </ul>
         <form t-event="add-todo">
           <input type="text" t-prop="text" size="30" placeholder="add new todo here">
