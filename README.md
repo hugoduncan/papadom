@@ -45,7 +45,7 @@ separated list of attribute names to be passed in the event data.
 
 The `papadom.template` namespace provides functions for interacting with the
 templates from within your application.  See the example
-[todo app code](examples/todo/src/papadom/examples/todo.cljs).
+[todo app code](examples/todo/src/papadom/example/todo.cljs).
 
 The `compile-templates` function must be called first, in order to compile the
 templates in the current page.
