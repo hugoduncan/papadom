@@ -8,6 +8,10 @@ delivered via `core.async` channels.
 
 **EXPERIMENTAL**
 
+*NOTE: the tests don't run yet due to :foreign-libs issues!*
+
+*NOTE: the js dependencies aren't working via :foreign-libs yet!*
+
 ## Usage
 
 Papadom uses custom attributes to recognise templates and elements that should
@@ -55,13 +59,27 @@ to receive events from `t-event` annotated elements.  You're application reads
 events from the event channel, modifies it's internal state, calling `render`
 to re-display the templates based on that state.
 
-## JavaScript dependencies
+## JavaScript Libraries
 
-**NOTE: the js dpendencies aren't working yet!**
+**NOTE: the tests don't run yet due to :foreign-libs issues!**
+**NOTE: the js dependencies aren't working via :foreign-libs yet!**
 
-Papadom uses `handlebars.js` and `jquery.js`.  You can provide these yourself,
-or add the following to your lein-cljsbuild `:compiler` configuration maps, and
-require the`papadom.js.handlebars` and `papadom.js.jquery` namespaces.
+Papadom uses `handlebars.js` and `jquery.js`.  You can provide these libs in
+several ways.
+
+### <script> Links in the HTML Page
+
+You can add `<script>` links in the applications web page to provide the
+JavaScript libs.  In this case you should not provide them via `:foreign-libs`
+configuration in your cljsbuild definition, and you should not require the
+`:foreign-libs` namespaces in your application code.
+
+### Use :foreign-libs with Papadom Provided Versions
+
+To use the versions of the JavaScript libraries included with Papadom, add the
+following to your lein-cljsbuild `:compiler` configuration maps, and
+require the`papadom.js.handlebars` and `papadom.js.jquery` namespaces in your
+application code.
 
 ```clj
 :foreign-libs
@@ -70,6 +88,14 @@ require the`papadom.js.handlebars` and `papadom.js.jquery` namespaces.
    {:file "papadom/js/handlebars.js"
     :provides ["papadom.js.handlebars"]}]
 ```
+
+### Use :foreign-libs with Custom Versions
+
+Add your own versions of the JavaScript libraries as resources, and add
+`:foreign-libs` definitions as above, but with the `:file` value pointing to the
+classpath relative path for your versions of the libraries.  Require
+the`papadom.js.handlebars` and `papadom.js.jquery` namespaces in your
+application code.
 
 ## License
 

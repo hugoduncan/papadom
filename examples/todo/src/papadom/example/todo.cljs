@@ -2,7 +2,11 @@
   "Simple todo example."
   (:require
    [cljs.core.async :refer [chan >! <!]]
-   ;; the papadom.js.* libs should cause jquery and handlebars to be pulled in
+   ;; If you want to compile in the js libs (jQuery and handlebars), then the
+   ;; papadom.js.* libs should cause jquery and handlebars to be pulled in.
+   ;; If you want to use the js libs via a CDN, then you should remove these
+   ;; requires, add script links in the web page, and remove the :foreign-libs
+   ;; from the clsbuild definition in project.clj
    papadom.js.jquery
    papadom.js.handlebars
    [papadom.template :refer [compile-templates input-seq->map render
