@@ -28,9 +28,10 @@
       </div>
     </div>
 
-    <!-- js libs shouldn't be needed when :foreign-libs works -->
-    <!-- <script type="text/javascript" src="/js/jquery.js"></script>
-         <script type="text/javascript" src="/js/handlebars.js"></script> -->
+    <!-- jquery for jayq can not be provided by :foreign-libs -->
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <!-- handlebars provided by :foreign-libs -->
+    <!-- <script type="text/javascript" src="/js/handlebars.js"></script> -->
 
     <script type="text/javascript" src="todos.js"></script>
     <script type="text/javascript">papadom.example.todo.start();</script>

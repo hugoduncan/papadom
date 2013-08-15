@@ -16,13 +16,9 @@
                 :compiler {:output-to "target/todos.js"
                            :optimizations :whitespace
                            :pretty-print true
-                           ;; If you want to use jquery and handlebars
-                           ;; via a CDN, remove the :foreign-libs
-                           ;; definitions.
+                           ;; jquery can not be provided via :foreign-libs
                            :foreign-libs
-                           [{:file "papadom/js/jquery.js"
-                             :provides ["papadom.js.jquery"]}
-                            {:file "papadom/js/handlebars.js"
+                           [{:file "papadom/js/handlebars.js"
                              :provides ["papadom.js.handlebars"]}]}}]
               :test-commands {"unit-tests"
                               ["runners/phantomjs.js"

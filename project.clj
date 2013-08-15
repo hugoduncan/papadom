@@ -19,9 +19,9 @@
   :cljsbuild {:builds
               [{:source-paths ["src" "test"]
                 :compiler {:output-to "target/papadom.js"
-                           ;; :optimizations :whitespace
+                           :optimizations :whitespace
                            :pretty-print true
-                           :foreign-libs
+                           :libs
                            [{:file "papadom/js/jquery.js"
                              :provides ["papadom.js.jquery"]}
                             {:file "papadom/js/handlebars.js"
