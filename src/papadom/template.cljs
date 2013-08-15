@@ -117,7 +117,7 @@
                       (wrap-control ctrl t-prop)
                       (attr ctrl "checked" "")))
           "SELECT" (let [option ($ "option" ctrl)]
-                     (doseq [e extra]
+                     (doseq [e (rest option)]
                        (jq/remove ($ e)))
                      (html option "{{label}}")
                      (attr option "value" "{{value}}")
