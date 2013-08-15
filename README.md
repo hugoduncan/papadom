@@ -8,9 +8,7 @@ delivered via `core.async` channels.
 
 **EXPERIMENTAL**
 
-*NOTE: the tests don't run yet due to :foreign-libs issues!*
-
-*NOTE: the js dependencies aren't working via :foreign-libs yet!*
+*NOTE: the tests don't run yet due to js packaging issues!*
 
 ## Usage
 
@@ -61,47 +59,39 @@ to re-display the templates based on that state.
 
 ## JavaScript Libraries
 
-**NOTE: the tests don't run yet due to :foreign-libs issues!**
-**NOTE: the js dependencies aren't working via :foreign-libs yet!**
+Papadom uses handlebars.js and jQuery.  Since we use jQuery via jayq, it has to
+be specified as a `&lt;script&gt;` tag in the browser.
 
-Papadom uses `handlebars.js` and `jquery.js`.  You can provide these libs in
-several ways.
+You can provide `handlebars.js` in several ways.
 
 See [Luke Vanderhart's post][lukespost] for a general introduction to using
 Javascript libraries in Clojurescript.
 
-### SCRIPT Links in the HTML Page
+### SCRIPT Link in the HTML Page
 
-You can add `<script>` links in the applications web page to provide the
-JavaScript libs.  In this case you should not provide them via `:foreign-libs`
-configuration in your cljsbuild definition, and you should not require the
-`:foreign-libs` namespaces in your application code.
+You can add a `<script>` links in the applications web page to provide
+handlebars.js.  In this case you should create an empty `papadom.js.jquery`
+namespace.
 
 To use `:optimizations` other than `:whitespace` with this approach, you will
 need to add `:externs` to the `:compiler` map in you cljsbuild definitions.
 
 ### Use :foreign-libs with Papadom Provided Versions
 
-To use the versions of the JavaScript libraries included with Papadom, add the
-following to your lein-cljsbuild `:compiler` configuration maps, and
-require the`papadom.js.handlebars` and `papadom.js.jquery` namespaces in your
-application code.
+To use the versions of the handlebars.js included with Papadom, add the
+following to your lein-cljsbuild `:compiler` configuration maps.
 
 ```clj
 :foreign-libs
-  [{:file "papadom/js/jquery.js"
-    :provides ["papadom.js.jquery"]}
-   {:file "papadom/js/handlebars.js"
+  [{:file "papadom/js/handlebars.js"
     :provides ["papadom.js.handlebars"]}]
 ```
 
 ### Use :foreign-libs with Custom Versions
 
-Add your own versions of the JavaScript libraries as resources, and add
+Add your own versions of handlebars.js as a resource, and add
 `:foreign-libs` definitions as above, but with the `:file` value pointing to the
-classpath relative path for your versions of the libraries.  Require
-the`papadom.js.handlebars` and `papadom.js.jquery` namespaces in your
-application code.
+classpath relative path for your versions of the libraries.
 
 ## License
 
