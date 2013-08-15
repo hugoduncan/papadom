@@ -13,7 +13,7 @@
       <div t-content="state">
         <p><span>{{remaining}} of {{total}} remaining</span>
              [ <a t-event="archive">archive</a> ]</p>
-        <ul class="unstyled">
+        <ul class="list-unstyled">
           <div t-template="todos">
             <li>
               <input type="checkbox" t-event="done" t-prop="done" t-id="index" index="{{@index}}">
