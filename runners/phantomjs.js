@@ -4,6 +4,7 @@
 
 var p = require('webpage').create();
 var sys = require('system');
+p.injectJs('resources/papadom/js/jquery.js');
 p.injectJs(sys.args[1]);
 
 p.onConsoleMessage = function (x) {

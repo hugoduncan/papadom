@@ -1,6 +1,5 @@
 (ns papadom.template-test
   (:require
-   papadom.js.jquery
    papadom.js.handlebars
    [cemerick.cljs.test :as t]
    [papadom.template :refer [input-name input-path]])

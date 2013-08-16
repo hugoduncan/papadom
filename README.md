@@ -8,8 +8,6 @@ delivered via `core.async` channels.
 
 **EXPERIMENTAL**
 
-*NOTE: the tests don't run yet due to js packaging issues!*
-
 ## Usage
 
 Papadom uses custom attributes to recognise templates and elements that should

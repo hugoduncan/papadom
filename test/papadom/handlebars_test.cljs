@@ -1,6 +1,5 @@
 (ns papadom.handlebars-test
   (:require
-   papadom.js.jquery
    papadom.js.handlebars
    [cemerick.cljs.test :as t]
    [papadom.handlebars :refer [render]])
