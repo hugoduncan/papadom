@@ -16,6 +16,8 @@ Papadom uses custom attributes to recognise templates and elements that should
 generate events when the user interacts with them.  See the example
 [todo app page](examples/todo/resources/public/index.html).
 
+There is also an introductory [blog post][papadomblog].
+
 ## Recognised Attributes
 
 `t-content`
@@ -102,3 +104,5 @@ your option) any later version.
 
 
 [lukespost]: http://lukevanderhart.com/2011/09/30/using-javascript-and-clojurescript.html "Luke Vanderhart's post on JavaScript libs"
+
+[papadomblog]: http://hugoduncan.org/post/webapp_with_core.async/
