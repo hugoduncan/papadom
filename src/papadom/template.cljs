@@ -5,7 +5,7 @@
    [clojure.string :as string]
    [clojure.set :refer [difference]]
    [jayq.core :as jq
-    :refer [$ after append attr before clone html prepend prop]]
+    :refer [$ after append attr before clone html prepend prev prop]]
    [papadom.async-dom :refer [clicks events form-submit-events]]
    [papadom.handlebars :refer [compile]]))
 
@@ -93,7 +93,9 @@
         [el parent] (if (attr el "t-elide-node")
                       [el el]
                       (let [c (clone el)]
-                        [c (append ($ "<div/>") c)]))]
+                        [c (append ($ "<div/>") c)]))
+        t-name (or (attr el "t-template") (attr el "t-contents"))
+        is-template? (boolean (attr el "t-template"))]
     (when block
       (scope-children parent block))
 
@@ -147,9 +149,12 @@
     (let [template (string/replace (html parent) mustache-node-regex "$1")]
       ;; (.log js/console (str "template: " template))
       {:node original-el
+       :parent (jq/parent original-el)
        :template template
        :html (compile template)
-       :type :t-template})))
+       :type (if is-template? :t-template :t-contents)
+       :prev (first (prev original-el))
+       :name t-name})))
 
 ;;; It would be great if the templates could be pre-compiled
 ;;; instead of compiled at runtime.
@@ -180,6 +185,11 @@
   []
   (set! templates (cache-templates)))
 
+(defn clear-templates
+  "Forget templates for the current page."
+  []
+  (set! templates nil))
+
 (defn template-for-name [t-name]
   (if-let [t (get templates t-name)]
     t
@@ -195,7 +205,16 @@
     ;;                       "  template: " (:template t)
     ;;                       "  vals: " vals
     ;;                       "  html: " s))
-    (html (:node t) s)))
+    (if (= :t-contents (:type t))
+      (html (:node t) s)
+      (let [div ($ "<div/>")]
+        (html div s)
+        (doseq [e (jq/children div)]
+          (attr ($ e) "t-template" (:name t)))
+        (jq/remove ($ (str "[t-template=" (:name t) "]")) (:parent t))
+        (if (:prev t)
+          (jq/after ($ (:prev t)) (jq/children div))
+          (jq/prepend-to (jq/children div) (:parent t)))))))
 
 ;;; Template based events
 (defn template-node-events
